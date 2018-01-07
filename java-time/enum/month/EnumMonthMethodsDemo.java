@@ -152,6 +152,44 @@ public class EnumMonthMethodsDemo {
 		for (Month month : months) {
 			System.out.println(month);
 		}
+		
+		/**
+		 * 
+		 * public String getDisplayName(TextStyle style, Locale locale)
+		 * 
+		 * Description - It returns the textual name used to identify the
+		 * month-of-year. If no textual mapping is found then the numeric value
+		 * is returned.
+		 * 
+		 */
+
+		String full = Month.FEBRUARY.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+		String fullStandalone = Month.FEBRUARY.getDisplayName(TextStyle.FULL_STANDALONE, Locale.ENGLISH);
+		String narrow = Month.FEBRUARY.getDisplayName(TextStyle.NARROW, Locale.ENGLISH);
+		String narrowStandalone = Month.FEBRUARY.getDisplayName(TextStyle.NARROW_STANDALONE, Locale.ENGLISH);
+		String shortt = Month.FEBRUARY.getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
+		String shortStandalone = Month.FEBRUARY.getDisplayName(TextStyle.SHORT_STANDALONE, Locale.ENGLISH);
+		System.out.println(full); // February
+		System.out.println(fullStandalone);// 2
+		System.out.println(narrow);// F
+		System.out.println(narrowStandalone);// 2
+		System.out.println(shortt);// Feb
+		System.out.println(shortStandalone);// 2
+
+		/**
+		 * 
+		 * public int get(TemporalField field) throws DateTimeException,UnsupportedTemporalTypeException,ArithmeticException
+		 * 
+		 * Description - It returns the value of the specified field from this
+		 * month-of-year as an int.
+		 * 
+		 * ChronoField is an enum present in java.time.temporal package and
+		 * implements TemporalField interface.
+		 */
+		System.out.println(Month.DECEMBER.get(ChronoField.MONTH_OF_YEAR));// 12
+		// System.out.println(Month.of(18).get(ChronoField.MONTH_OF_YEAR)); RE : DateTimeException
+		// System.out.println(Month.DECEMBER.get(ChronoField.CLOCK_HOUR_OF_AMPM)); RE : UnsupportedTemporalTypeException
+
 
 	}
 
