@@ -32,7 +32,6 @@ public class EnumMonthMethodsDemo {
 		 * December return October.
 		 * 
 		 */
-
 		System.out.println(Month.MARCH.firstMonthOfQuarter());// JANUARY
 		System.out.println(Month.MAY.firstMonthOfQuarter());// APRIL
 		System.out.println(Month.AUGUST.firstMonthOfQuarter());// JULY
@@ -94,7 +93,6 @@ public class EnumMonthMethodsDemo {
 		 * negative.
 		 * 
 		 */
-
 		System.out.println(Month.DECEMBER.minus(5));// JULY
 		System.out.println(Month.FEBRUARY.minus(3));// NOVEMBER
 		System.out.println(Month.MARCH.minus(-3));// JUNE
@@ -123,7 +121,6 @@ public class EnumMonthMethodsDemo {
 		 * negative.
 		 * 
 		 */
-
 		System.out.println(Month.JANUARY.plus(4));// MAY
 		System.out.println(Month.DECEMBER.plus(3));// MARCH
 		System.out.println(Month.FEBRUARY.plus(-3));// NOVEMBER
@@ -147,7 +144,6 @@ public class EnumMonthMethodsDemo {
 		 * enum type, in the order they are declared
 		 * 
 		 */
-
 		Month[] months = Month.values();
 		for (Month month : months) {
 			System.out.println(month);
@@ -162,7 +158,6 @@ public class EnumMonthMethodsDemo {
 		 * is returned.
 		 * 
 		 */
-
 		String full = Month.FEBRUARY.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
 		String fullStandalone = Month.FEBRUARY.getDisplayName(TextStyle.FULL_STANDALONE, Locale.ENGLISH);
 		String narrow = Month.FEBRUARY.getDisplayName(TextStyle.NARROW, Locale.ENGLISH);
@@ -189,6 +184,96 @@ public class EnumMonthMethodsDemo {
 		System.out.println(Month.DECEMBER.get(ChronoField.MONTH_OF_YEAR));// 12
 		// System.out.println(Month.of(18).get(ChronoField.MONTH_OF_YEAR)); RE : DateTimeException
 		// System.out.println(Month.DECEMBER.get(ChronoField.CLOCK_HOUR_OF_AMPM)); RE : UnsupportedTemporalTypeException
+		
+		/**
+		 * 
+		 * public long getLong(TemporalField field) throws DateTimeException,UnsupportedTemporalTypeException,ArithmeticException
+		 * 
+		 * Description - It returns the value of the specified field from this
+		 * month-of-year as an long.
+		 * 
+		 * ChronoField is an enum present in java.time.temporal package and
+		 * implements TemporalField interface.
+		 */
+		System.out.println(Month.JUNE.getLong(ChronoField.MONTH_OF_YEAR));// 6
+		// System.out.println(Month.of(18).getLong(ChronoField.MONTH_OF_YEAR)); RE : DateTimeException
+		// System.out.println(Month.JUNE.getLong(ChronoField.CLOCK_HOUR_OF_AMPM)); RE : UnsupportedTemporalTypeException
+
+		
+		/**
+		 * public boolean isSupported(TemporalField field)
+		 * 
+		 * Description - It returns true if the field is supported on this
+		 * month-of-year, false if not
+		 * 
+		 * ChronoField is an enum present in java.time.temporal package and
+		 * implements TemporalField interface.
+		 * 
+		 */
+		System.out.println(Month.JUNE.isSupported(ChronoField.MONTH_OF_YEAR));// true
+		System.out.println(Month.JUNE.isSupported(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH));// false
+
+		
+		/**
+		 * 
+		 * public ValueRange range(TemporalField field)throws DateTimeException,UnsupportedTemporalTypeException
+		 * 
+		 * Description - It returns the range of valid values for the specified
+		 * field.
+		 * 
+		 * ChronoField is an enum present in java.time.temporal package and
+		 * implements TemporalField interface.
+		 * 
+		 */
+		System.out.println(Month.JUNE.range(ChronoField.MONTH_OF_YEAR));// 1-12
+		// System.out.println(Month.JUNE.range(ChronoField.CLOCK_HOUR_OF_AMPM)); RE : UnsupportedTemporalTypeException
+		// System.out.println(Month.of(14).range(ChronoField.MONTH_OF_YEAR)); RE : DateTimeException
+
+		
+		/**
+		 * 
+		 * public static Month from(TemporalAccessor temporal) throws DateTimeException
+		 * 
+		 * Description - It returns an instance of Month from a temporal object.
+		 * 
+		 * LocalDate, Month, LocalDateTime, LocalTime etc are implementation
+		 * classes of TemporalAccessor interface.
+		 * 
+		 */
+		System.out.println(Month.from(LocalDate.now()));// JANUARY
+		System.out.println(Month.from(Month.DECEMBER));// DECEMBER
+		System.out.println(Month.from(LocalDateTime.now()));// JANUARY
+		// System.out.println(Month.from(LocalTime.now()));RE : DateTimeException
+
+		
+		/**
+		 * public Temporal adjustInto(Temporal temporal) throws ArithmeticException,DateTimeException
+		 * 
+		 * Description - It Adjusts the specified temporal object to have this
+		 * month-of-year.
+		 * 
+		 * LocalDate, YearMonth etc are implementation classes of Temporal
+		 * interface.
+		 * 
+		 */
+		System.out.println(Month.JUNE.adjustInto(LocalDate.now()));// 2018-06-08
+		System.out.println(Month.JUNE.adjustInto(YearMonth.now()));// 2018-06
+		// System.out.println(Month.of(20).adjustInto(LocalDate.now())); RE:DateTimeException
+
+		
+		/**
+		 * 
+		 * public <R> R query(TemporalQuery<R> query)throws ArithmeticException,DateTimeException
+		 * 
+		 * Description - It queries this month-of-year using the specified query.
+		 * 
+		 * TemporalQuery is a function interface and it has following method.
+		 * R queryFrom(TemporalAccessor temporal)
+		 *
+		 */
+		TemporalQuery<Integer> myQuery = T -> T.get(ChronoField.MONTH_OF_YEAR);
+		System.out.println(Month.AUGUST.query(myQuery));
+		//System.out.println(Month.of(14).query(myQuery)); // RE: DateTimeException
 
 
 	}
