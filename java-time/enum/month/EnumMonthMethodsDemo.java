@@ -279,7 +279,7 @@ public class EnumMonthMethodsDemo {
 		 *
 		 */
 		TemporalQuery<Integer> myQuery = T -> T.get(ChronoField.MONTH_OF_YEAR);
-		System.out.println(Month.AUGUST.query(myQuery));
+		System.out.println(Month.AUGUST.query(myQuery));//8
 		//System.out.println(Month.of(14).query(myQuery)); // RE: DateTimeException
 
 
